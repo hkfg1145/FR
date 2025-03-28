@@ -1,0 +1,23 @@
+#the mod name as displayed in-game
+displayName: "Forgotten Realms"
+
+#the internal name of your mod
+name: "fr"
+
+#your name
+author: "hkfg R"
+
+#the fully qualified main class of the mod
+main: "fr.FRMain"
+
+#the mod description as seen in the mod dialog
+description: ""
+
+#the mod version
+version: 1.0
+
+#the minimum game build required to run this mod
+minGameVersion: 146
+
+#this is a java mod
+java: true
