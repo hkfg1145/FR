@@ -1,5 +1,6 @@
 package fr.type;
 
+import arc.Core;
 import arc.func.Floatp;
 import arc.graphics.Color;
 import arc.scene.ui.layout.Scl;
@@ -12,13 +13,20 @@ import mindustry.ui.Bar;
 import mindustry.graphics.Pal;
 
 public class FRNomralUnitType extends UnitType {
-  public float unitEnergy;
+  public float unitEnergy, maxUnitEnergy;
   public Floatp unitEnergyTemp;
 
   public FRNomralUnitType(String name) {
     super(name);
     this.unitEnergy = 200f;
+    this.maxUnitEnergy = this.unitEnergy;
+    getFloatp();
+  }
+
+  public Floatp getFloatp() {
     this.unitEnergyTemp = () -> this.unitEnergy;
+    return this.unitEnergyTemp;
+
   }
 
   @Override
@@ -26,7 +34,8 @@ public class FRNomralUnitType extends UnitType {
     super.display(unit, table);
     table.table(bars -> {
       bars.defaults().growX().height(20f).pad(4);
-      bars.add(new Bar("stat.unitEnergy", Pal.heal, unitEnergyTemp).blink(Color.white));
+      bars.add(new Bar(Core.bundle.get("stat.unitEnergy"), Pal.heal, () -> unitEnergyTemp / maxUnitEnergy)
+          .blink(Color.white));
     }).growX();
   }
 
